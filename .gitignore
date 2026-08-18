@@ -16,15 +16,16 @@ __pycache__/
 .ruff_cache/
 .coverage
 htmlcov/
-
-# Node.js
-node_modules/
+*.egg-info/
 dist/
-coverage/
+build/
+
+# Local SQLite databases produced by running the CLI/MCP server
+data/
+*.db
 
 # Logs
 *.log
-npm-debug.log*
 
 # Editors
 .vscode/

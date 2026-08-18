@@ -1,0 +1,25 @@
+# Example configuration for the repository's demo corpus.
+#
+# Paths are resolved relative to this file's own directory, not the
+# process's current working directory. Copy this file somewhere and adjust
+# `source.root` and `persistence.db_path` for a real deployment; this
+# example intentionally favors easy base (lexical-only) operation.
+
+[source]
+source_id = "aegis-demo"
+root = "../corpus"
+max_file_size_bytes = 1000000
+
+[persistence]
+db_path = "../data/engineering-knowledge.db"
+
+[processing]
+max_chunk_chars = 1000
+
+[retrieval]
+default_strategy = "lexical"
+
+[embeddings]
+enabled = false
+provider = "sentence_transformers"
+model_id = "sentence-transformers/all-MiniLM-L6-v2"

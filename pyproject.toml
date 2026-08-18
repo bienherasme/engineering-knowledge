@@ -1,0 +1,115 @@
+[project]
+name = "engineering-knowledge"
+version = "0.1.0"
+description = "Local-first engineering knowledge retrieval with deterministic ingestion, provenance, hybrid search, and measurable retrieval evaluation."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "Bienvenido Herasme" },
+]
+keywords = [
+    "retrieval",
+    "rag",
+    "knowledge-base",
+    "engineering-documentation",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Text Processing :: Indexing",
+]
+dependencies = [
+    "pydantic>=2.7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+    "mypy>=1.11",
+]
+vector = [
+    # Pre-1.0: pin the floor to the exact version this repo's sqlite-vec
+    # spike verified (extension load, persistence, KNN query, joins against
+    # normalized tables) and cap below the next minor, since 0.x releases
+    # are not guaranteed compatible across minor bumps.
+    "sqlite-vec>=0.1.9,<0.2",
+]
+local-embeddings = [
+    "sentence-transformers>=6.0,<7",
+]
+mcp = [
+    "mcp>=2.0,<3",
+]
+
+[project.scripts]
+engineering-knowledge = "engineering_knowledge.cli.main:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unused_ignores = true
+
+# sqlite-vec and sentence-transformers are optional dependencies, lazily
+# imported inside the vector/local-embeddings adapters. mypy still statically
+# resolves those import statements regardless of whether the package is
+# actually installed in the environment running mypy, so both need this
+# override to check cleanly whether or not the optional extras are present.
+[[tool.mypy.overrides]]
+module = "sqlite_vec"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "sentence_transformers"
+ignore_missing_imports = true
+
+# mcp is an optional dependency, imported only inside the mcp adapter
+# package, lazily loaded by the CLI's serve-mcp command. Same reasoning as
+# the two overrides above: mypy must check cleanly whether or not the
+# 'mcp' extra is installed in the environment running it.
+[[tool.mypy.overrides]]
+module = "mcp.*"
+ignore_missing_imports = true
+
+# When 'mcp' is not installed (the guaranteed base floor CI checks),
+# ignore_missing_imports above resolves MCPServer.tool() to Any, and mypy
+# strict's disallow_untyped_decorators then flags every @server.tool()
+# closure as an untyped decorator. Scoped to this one adapter module,
+# whose whole purpose is exactly this decorator pattern, rather than
+# relaxed project-wide.
+[[tool.mypy.overrides]]
+module = "engineering_knowledge.mcp.server"
+disable_error_code = ["untyped-decorator"]
+
+# numpy's own stub files use syntax that requires a newer python_version
+# than this project's floor to even parse. Skipping resolution keeps this
+# project's own code checked against python_version = 3.11 above, while
+# not choking on a stub file we do not own and did not write; numpy only
+# enters the dependency graph via the optional local-embeddings extra.
+[[tool.mypy.overrides]]
+module = "numpy.*"
+follow_imports = "skip"
+follow_imports_for_stubs = true

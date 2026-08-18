@@ -1,0 +1,244 @@
+{
+  "source_id": "aegis-demo",
+  "max_chunk_chars": 1000,
+  "queries": [
+    {
+      "query_id": "exact-timeout-error",
+      "query": "PaymentGatewayTimeoutError",
+      "category": "lexical",
+      "relevant": [
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-5xx-troubleshooting.md",
+          "section_path": ["Troubleshooting Aegis 5xx Errors", "PaymentGatewayTimeoutError", "Symptoms"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        },
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-api-config-reference.md",
+          "section_path": ["Aegis Payments API and Configuration Reference", "Error Codes"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        }
+      ]
+    },
+    {
+      "query_id": "exact-max-retry-count",
+      "query": "MAX_RETRY_COUNT",
+      "category": "lexical",
+      "relevant": [
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-api-config-reference.md",
+          "section_path": ["Aegis Payments API and Configuration Reference", "Configuration Keys"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        },
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-5xx-troubleshooting.md",
+          "section_path": ["Troubleshooting Aegis 5xx Errors", "Retry Storms and MAX_RETRY_COUNT"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        }
+      ]
+    },
+    {
+      "query_id": "exact-health-ready-endpoint",
+      "query": "/health/ready",
+      "category": "lexical",
+      "relevant": [
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-api-config-reference.md",
+          "section_path": ["Aegis Payments API and Configuration Reference", "Endpoints", "GET /health/ready"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        },
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-deployment-guide.md",
+          "section_path": ["Aegis Payments Deployment Guide", "Health Checks"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        }
+      ]
+    },
+    {
+      "query_id": "exact-idempotency-ttl-seconds",
+      "query": "IDEMPOTENCY_TTL_SECONDS",
+      "category": "lexical",
+      "relevant": [
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "adr-014-idempotency-keys.md",
+          "section_path": ["ADR-014: Idempotency Keys for Payment Retries", "Decision"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        },
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-api-config-reference.md",
+          "section_path": ["Aegis Payments API and Configuration Reference", "Configuration Keys"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        }
+      ]
+    },
+    {
+      "query_id": "semantic-rollback-failed-release",
+      "query": "how do I undo a payments release that starts causing errors",
+      "category": "semantic",
+      "relevant": [
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-deployment-guide.md",
+          "section_path": ["Aegis Payments Deployment Guide", "Rollback", "Rollback Procedure"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        },
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-incident-runbook.md",
+          "section_path": ["Aegis Payments Incident Runbook", "Rollback During an Incident"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        }
+      ]
+    },
+    {
+      "query_id": "semantic-prevent-double-charge",
+      "query": "what prevents a retried payment request from charging twice",
+      "category": "semantic",
+      "relevant": [
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "adr-014-idempotency-keys.md",
+          "section_path": ["ADR-014: Idempotency Keys for Payment Retries", "Decision"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        }
+      ]
+    },
+    {
+      "query_id": "semantic-slow-card-processing",
+      "query": "what should I check when upstream card processing becomes slow",
+      "category": "semantic",
+      "relevant": [
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-5xx-troubleshooting.md",
+          "section_path": ["Troubleshooting Aegis 5xx Errors", "Elevated Latency on Card Processing"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        }
+      ]
+    },
+    {
+      "query_id": "semantic-service-ready-for-traffic",
+      "query": "how can I tell whether the service is ready to receive traffic",
+      "category": "semantic",
+      "relevant": [
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-api-config-reference.md",
+          "section_path": ["Aegis Payments API and Configuration Reference", "Endpoints", "GET /health/ready"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        },
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-deployment-guide.md",
+          "section_path": ["Aegis Payments Deployment Guide", "Health Checks"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        }
+      ]
+    },
+    {
+      "query_id": "mixed-retry-count-gateway-timeout",
+      "query": "MAX_RETRY_COUNT when gateway calls keep timing out",
+      "category": "mixed",
+      "relevant": [
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-5xx-troubleshooting.md",
+          "section_path": ["Troubleshooting Aegis 5xx Errors", "Retry Storms and MAX_RETRY_COUNT"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        },
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-5xx-troubleshooting.md",
+          "section_path": ["Troubleshooting Aegis 5xx Errors", "PaymentGatewayTimeoutError", "Likely Causes"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        }
+      ]
+    },
+    {
+      "query_id": "mixed-rollback-aegis-elevated-5xx",
+      "query": "rollback aegis-payments after elevated 5xx responses",
+      "category": "mixed",
+      "relevant": [
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-deployment-guide.md",
+          "section_path": ["Aegis Payments Deployment Guide", "Rollback", "Rollback Procedure"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        },
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-incident-runbook.md",
+          "section_path": ["Aegis Payments Incident Runbook", "Common Incident Patterns", "Elevated 5xx Responses"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        }
+      ]
+    },
+    {
+      "query_id": "mixed-idempotency-repeated-post",
+      "query": "idempotency key behavior on repeated POST payment requests",
+      "category": "mixed",
+      "relevant": [
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "adr-014-idempotency-keys.md",
+          "section_path": ["ADR-014: Idempotency Keys for Payment Retries", "Decision"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        },
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-api-config-reference.md",
+          "section_path": ["Aegis Payments API and Configuration Reference", "Endpoints", "POST /v1/payments"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        }
+      ]
+    },
+    {
+      "query_id": "mixed-timeout-error-after-deploy",
+      "query": "PaymentGatewayTimeoutError after a deployment",
+      "category": "mixed",
+      "relevant": [
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-5xx-troubleshooting.md",
+          "section_path": ["Troubleshooting Aegis 5xx Errors", "PaymentGatewayTimeoutError", "Symptoms"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        },
+        {
+          "source_id": "aegis-demo",
+          "relative_path": "aegis-incident-runbook.md",
+          "section_path": ["Aegis Payments Incident Runbook", "Common Incident Patterns", "Payment Gateway Timeouts"],
+          "section_occurrence": 0,
+          "ordinal_in_section": 0
+        }
+      ]
+    }
+  ]
+}

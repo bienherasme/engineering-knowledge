@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  base:
+    name: base (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      # No optional extras: this is the guaranteed package floor. It must
+      # never require sqlite-vec, sentence-transformers, or mcp.
+      - run: pip install -e ".[dev]"
+      - run: ruff check src tests
+      - run: mypy src --strict
+      - run: pytest -q
+
+  optional-capabilities:
+    name: optional capabilities (vector, mcp)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      # local-embeddings is deliberately excluded here: the ordinary unit
+      # suite must never download a Hugging Face model in CI. Real-model
+      # evaluation is a manual, documented step, not something CI runs.
+      - run: pip install -e ".[dev,vector,mcp]"
+      - run: pytest -q
